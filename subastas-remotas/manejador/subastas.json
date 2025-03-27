@@ -1,0 +1,28 @@
+[
+  {
+    "id": 1,
+    "titulo": "The Mona Lisa",
+    "artista": "Leonardo da Vinci",
+    "anio": 1503,
+    "precio": 200000000,
+    "incremento": 5000000,
+    "duracion": 60,
+    "imagen": "https://example.com/monalisa.jpg",
+    "activa": true,
+    "postores": [],
+    "ofertas": []
+  },
+  {
+    "id": 2,
+    "titulo": "The Dance Class",
+    "artista": "Edgar Degas",
+    "anio": 1874,
+    "precio": 10000000,
+    "incremento": 250000,
+    "duracion": 45,
+    "imagen": "https://example.com/danceclass.jpg",
+    "activa": true,
+    "postores": [],
+    "ofertas": []
+  }
+]
