@@ -19,7 +19,18 @@ Este proyecto es una aplicación desarrollada por Ulises Fajardo, Ronald Salgado
     ```bash
     npm install
     ```
-
+**Docker**
+1. Descargar las imágenes desde Docker Hub
+    ```bash
+    docker pull tony0305/manejador
+    docker pull tony0305/postores
+    ```
+2. Ejecutar los contenedores en local
+    ```bash
+    docker run -p 8080:8080 tony0305/manejador
+    docker run -p 8081:8081 tony0305/postores
+    ```
+    
 ## Scripts disponibles
 
 Debes correr en /subastas-frontend, /subastas-remotas/postores y /subastas-remotas/manejador
@@ -37,6 +48,6 @@ Abre [http://localhost:3000](http://localhost:3000) para verla en tu navegador.
 
 ## Deber 3
 
-Ulises Fajardo: se encargo de realizar la estructura del proyecto y el estilo del front end
-Ronald Salgado: se encargo de la lógica de los sockets del manejador
+Ulises Fajardo: se encargo de realizar la estructura del proyecto, el estilo del front end y correción de errores
+Ronald Salgado: se encargo de la lógica de los servicios del manejador
 Andrés Herrera: se encargo de corregir errores y de implementar la lógica del postor
