@@ -1,59 +1,80 @@
-const http = require('http');
-const express = require('express');
-const cors = require('cors');
-const appBidders = express();
-const httpServer = http.createServer(appBidders);
-const WebSocket = require('ws');
-const wssBidders = new WebSocket.Server({ server: httpServer });
+const express = require("express");
+const cors = require("cors");
+const fetch = require("node-fetch");
 
-// Variable para determinar si la configuración de las subastas está definida
-let auctionsConfigured = false;
-let auctions = [];
+const app = express();
+app.use(cors());
+app.use(express.json());
 
-// Función simulada para establecer la configuración de las subastas.
-// En un escenario real, esta configuración vendría del servicio del manejador.
+const PORT = 8081;
+const MANEJADOR_URL = "http://localhost:8080";
 
-appBidders.use(cors());
-appBidders.use(express.json());
+// ✅ Obtener subastas activas desde el manejador
+async function obtenerSubastasActivas() {
+    try {
+        const response = await fetch(`${MANEJADOR_URL}/subastas/activas`);
+        if (!response.ok) throw new Error("No se pudo obtener subastas activas");
 
-// Endpoint para obtener las subastas.
-// Si la configuración aún no está definida, se notifica al postor que intente más tarde.
-appBidders.get('/auctions', (req, res) => {
-  if (!auctionsConfigured) {
-    return res.status(400).json({ message: "La configuración de subastas aún no está disponible. Por favor, inténtelo más tarde." });
-  }
-  res.json(auctions);
-});
+        const data = await response.json();
 
-// Endpoint para realizar una oferta.
-// Se verifica primero si la configuración está definida.
-appBidders.post('/bid', (req, res) => {
-  if (!auctionsConfigured) {
-    return res.status(400).json({ message: "La configuración de subastas aún no está disponible. Por favor, inténtelo más tarde." });
-  }
-  const { auctionId, bidder, amount } = req.body;
-  const auction = auctions.find(a => a.id === auctionId);
-  if (!auction || !auction.active) {
-    return res.status(400).json({ message: "Subasta no activa" });
-  }
-  if (amount < auction.price + auction.minIncrement) {
-    return res.status(400).json({ message: "Oferta demasiado baja" });
-  }
-  auction.price = amount;
-  auction.bids.push({ bidder, amount });
-  dispatchUpdate();
-  res.json({ message: "Oferta registrada" });
-});
+        if (!Array.isArray(data)) {
+            console.error("❌ Respuesta no válida:", data);
+            return [];
+        }
 
-// Función para enviar actualizaciones en tiempo real a través de WebSockets.
-function dispatchUpdate() {
-  const update = JSON.stringify(auctions);
-  wssBidders.clients.forEach(client => {
-    if (client.readyState === WebSocket.OPEN) {
-      client.send(update);
+        return data;
+    } catch (error) {
+        console.error("❌ Error al obtener subastas activas:", error.message);
+        return [];
     }
-  });
 }
 
-// Inicia el servidor en el puerto 8081
-httpServer.listen(8081, () => console.log('Servicio de postores en 8081'));
+// 📌 Registrar postor (lógica simulada local)
+app.post("/registrar-postor", async (req, res) => {
+    const { nombre, subastaId } = req.body;
+
+    const subastas = await obtenerSubastasActivas();
+    const subasta = subastas.find(s => s.id === parseInt(subastaId));
+
+    if (!subasta) {
+        return res.status(400).json({ error: "Subasta no encontrada o no activa." });
+    }
+
+    if (!subasta.postores.includes(nombre)) {
+        subasta.postores.push(nombre);
+        console.log(`✅ ${nombre} registrado en subasta "${subasta.titulo}"`);
+    }
+
+    res.json({ message: "Postor registrado con éxito", subasta });
+});
+
+// 💰 Realizar oferta llamando al manejador
+app.post("/ofertar", async (req, res) => {
+    const { subastaId, nombre, monto } = req.body;
+
+    try {
+        const response = await fetch(`${MANEJADOR_URL}/subastas/ofertar`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ subastaId, nombre, monto }),
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            console.error("❌ Error al ofertar:", data.error);
+            return res.status(400).json({ error: data.error });
+        }
+
+        console.log(`💸 Oferta enviada por ${nombre}: $${monto}`);
+        res.json(data);
+    } catch (error) {
+        console.error("❌ Error al enviar oferta:", error.message);
+        res.status(500).json({ error: "Error interno al enviar oferta" });
+    }
+});
+
+// 🚀 Arrancar el servidor
+app.listen(PORT, () => {
+    console.log(`🚀 Servicio de postores corriendo en puerto ${PORT}`);
+});
