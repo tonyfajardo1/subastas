@@ -11,7 +11,7 @@ Este proyecto es una aplicación desarrollada por Ulises Fajardo, Ronald Salgado
 
 1. Clona este repositorio:
     ```bash
-    git clone https://github.com/tu-usuario/subastas.git
+    git clone https://github.com/tonyfajardo1/subastas
     cd subastas
     ```
 
@@ -30,7 +30,7 @@ Este proyecto es una aplicación desarrollada por Ulises Fajardo, Ronald Salgado
     docker run -p 8080:8080 tony0305/manejador
     docker run -p 8081:8081 tony0305/postores
     ```
-    
+
 ## Scripts disponibles
 
 Debes correr en /subastas-frontend, /subastas-remotas/postores y /subastas-remotas/manejador
