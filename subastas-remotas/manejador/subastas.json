@@ -1,28 +1,93 @@
 [
-  {
-    "id": 1,
-    "titulo": "The Mona Lisa",
-    "artista": "Leonardo da Vinci",
-    "anio": 1503,
-    "precio": 200000000,
-    "incremento": 5000000,
-    "duracion": 60,
-    "imagen": "https://example.com/monalisa.jpg",
-    "activa": true,
-    "postores": [],
-    "ofertas": []
-  },
-  {
-    "id": 2,
-    "titulo": "The Dance Class",
-    "artista": "Edgar Degas",
-    "anio": 1874,
-    "precio": 10000000,
-    "incremento": 250000,
-    "duracion": 45,
-    "imagen": "https://example.com/danceclass.jpg",
-    "activa": true,
-    "postores": [],
-    "ofertas": []
-  }
-]
+    {
+      "id": 1,
+      "titulo": "The Mona Lisa",
+      "artista": "Leonardo da Vinci",
+      "anio": 1503,
+      "precio": 200000000,
+      "incremento": 5000000,
+      "duracion": 60,
+      "imagen": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/402px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg",
+      "activa": true,
+      "postores": [],
+      "ofertas": []
+    },
+    {
+      "id": 2,
+      "titulo": "The Dance Class",
+      "artista": "Edgar Degas",
+      "anio": 1874,
+      "precio": 10000000,
+      "incremento": 250000,
+      "duracion": 45,
+      "imagen": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Edgar_Degas_The_Dance_Class.jpg/1280px-Edgar_Degas_The_Dance_Class.jpg",
+      "activa": true,
+      "postores": [],
+      "ofertas": []
+    },
+    {
+      "id": 3,
+      "titulo": "L'Absinthe",
+      "artista": "Edgar Degas",
+      "anio": 1876,
+      "precio": 19000000,
+      "incremento": 500000,
+      "duracion": 60,
+      "imagen": "https://upload.wikimedia.org/wikipedia/commons/4/45/%22L%27Absinthe%22%2C_par_Edgar_Degas_%281876%29.jpg",
+      "activa": true,
+      "postores": [],
+      "ofertas": []
+    },
+    {
+      "id": 4,
+      "titulo": "Portrait of a Woman in a Hat",
+      "artista": "Amedeo Modigliani",
+      "anio": 1918,
+      "precio": 67000000,
+      "incremento": 1000000,
+      "duracion": 45,
+      "imagen": "https://upload.wikimedia.org/wikipedia/commons/7/7b/Modigliani_Amedeo_14.jpg",
+      "activa": true,
+      "postores": [],
+      "ofertas": []
+    },
+    {
+      "id": 5,
+      "titulo": "Woman with Red Hair",
+      "artista": "Amedeo Modigliani",
+      "anio": 1919,
+      "precio": 120000000,
+      "incremento": 2000000,
+      "duracion": 60,
+      "imagen": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Amedeo_Modigliani_-_Woman_with_Red_Hair_%281917%29.jpg",
+      "activa": true,
+      "postores": [],
+      "ofertas": []
+    },
+    {
+      "id": 6,
+      "titulo": "Portrait of Dora Maar",
+      "artista": "Pablo Picasso",
+      "anio": 1937,
+      "precio": 90000000,
+      "incremento": 1500000,
+      "duracion": 50,
+      "imagen": "https://upload.wikimedia.org/wikipedia/en/d/d4/Portrait_of_Dora_Maar.jpg",
+      "activa": true,
+      "postores": [],
+      "ofertas": []
+    },
+    {
+      "id": 7,
+      "titulo": "Self-Portrait",
+      "artista": "Vincent Van Gogh",
+      "anio": 1889,
+      "precio": 100000000,
+      "incremento": 2000000,
+      "duracion": 60,
+      "imagen": "https://upload.wikimedia.org/wikipedia/commons/b/b2/Vincent_van_Gogh_-_Self-Portrait_-_Google_Art_Project.jpg",
+      "activa": true,
+      "postores": [],
+      "ofertas": []
+    }
+  ]

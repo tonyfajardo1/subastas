@@ -4,4 +4,4 @@ COPY package*.json ./
 RUN npm install
 COPY . .
 EXPOSE 8081
-CMD ["node", "server-postores.js"]
+CMD ["node", "server.js"]
